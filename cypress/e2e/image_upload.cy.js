@@ -1,12 +1,12 @@
 describe('Image upload', () => {
 
     before(() => {
-        cy.visit('https://imgur.com/')
+        cy.visit('https://imgur.com/upload')
     })
 
     it('Upload new image', () => {
-        cy.get('.newPostLabel').should('have.text', 'New post').click()
-        cy.url('https://imgur.com/upload').should('contain', '/upload')
-        cy.get('.PopUpDrop-DropArea').attachFile('image.jpg')
+        cy.get('#file-input').attachFile('../fixtures/image.jpg');
+        cy.wait(6000);
+        cy.get(".ToastContainer").contains("Complete");
     })
 })
